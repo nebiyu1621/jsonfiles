@@ -790,16 +790,15 @@ form {
     box-sizing: border-box;
 }
 
-input,
+
 textarea {
     font-family: sans-serif;
     outline: none;
     border-style: none;
-}
-
-textarea {
+    width: 0;
     text-align: start;
 }
+
 
 #btn-submit {
     font-size: 16px;
@@ -822,6 +821,7 @@ footer {
     position: relative;
     top: 5px;
 }
+
 .flex-menu{
     display: flex;
     flex-direction: row;

@@ -53,10 +53,11 @@
                   "content": "finish snake game project in three days",
                   "id": 1739137359046,
                   "level": "default",
-                  "done": false,
+                  "done": true,
                   "start": 1739137359046,
-                  "focus": true,
-                  "date": "1739139200,1739312010"
+                  "focus": false,
+                  "date": "1739139200,1739312010",
+                  "end": 1739584014275
                 }
               }
             ],
@@ -64,9 +65,44 @@
               "content": "start project about calculator app and snake game understand its logic to build by your self",
               "id": 1735814768618,
               "level": "default",
-              "done": false,
+              "done": true,
               "start": 1735814768618,
-              "focus": true
+              "focus": false,
+              "end": 1739584019931
+            }
+          },
+          {
+            "key": 1739584022195,
+            "children": [
+              {
+                "key": 1739584100307,
+                "children": [],
+                "todo": {
+                  "content": "its at least two days project",
+                  "id": 1739584100307,
+                  "level": "default",
+                  "done": false,
+                  "start": 1739584100307
+                }
+              },
+              {
+                "key": 1739584148066,
+                "children": [],
+                "todo": {
+                  "content": "sites are: vegan, apple(css,html), keyboard(piano), snakeGame, css google,slider (css)",
+                  "id": 1739584148066,
+                  "level": "default",
+                  "done": false,
+                  "start": 1739584148066
+                }
+              }
+            ],
+            "todo": {
+              "content": "publish sites that you have builded so far , and upload them to github structurally and to linkedin",
+              "id": 1739584022195,
+              "level": "default",
+              "done": false,
+              "start": 1739584022195
             }
           }
         ],
@@ -81,7 +117,9 @@
     ],
     "expandKeys": [
       1734428282364,
-      1735814768618
+      1735814768618,
+      1739584022195,
+      1739584100307
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
@@ -94,6 +132,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1739137431372"
+    "version": "1739584510623"
   }
 }
