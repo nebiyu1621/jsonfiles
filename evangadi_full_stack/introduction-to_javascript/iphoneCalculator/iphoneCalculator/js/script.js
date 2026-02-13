@@ -43,7 +43,7 @@ let operatorInMemory = null;
 //    d. Updating the display
 
 // functions
-const getvalueAsStr = () => {
+const getValueAsStr = () => {
     const currentValueStr = valueEl.textContent;
     return currentValueStr.split(',').join('');
 }
@@ -53,7 +53,7 @@ const getvalueAsStr = () => {
 
 
 const getValueAsNum = () => {
-    return parseFloat(getvalueAsStr());
+    return parseFloat(getValueAsStr());
 }
 
 const setStrAsValue = (valueStr) => {
@@ -73,7 +73,7 @@ const setStrAsValue = (valueStr) => {
 const handleNumberClick = (numstr) => {
     console.log(numstr);
 
-    const currentValueStr = getvalueAsStr();
+    const currentValueStr = getValueAsStr();
     if(currentValueStr === '0'){
         // valueEl.textContent = numstr;
         setStrAsValue(numstr);
@@ -112,7 +112,7 @@ const getResultofOperationAsStr = () => {
 
 
 const handleOperatorClick = (operation) => {
-    const currentValueStr = getvalueAsStr();
+    const currentValueStr = getValueAsStr();
  
     if (!valueStrInMemory) {
         valueStrInMemory = currentValueStr;
@@ -140,19 +140,13 @@ pmEl.addEventListener('click', () => {
 
     const currentValueNum = getValueAsNum();
     
-    const currentValueStr = getvalueAsStr();
+    const currentValueStr = getValueAsStr();
 // this condition ensures that if the current value is 0 or -0, it will return 0 to make change when the negative sign is called again
 
     if(currentValueStr === '-0' ){
         setStrAsValue('0');
         return;
     }
-
-    if (currentValueStr === '-0') {
-        setStrAsValue('0');
-        return;
-    }
-
 
     if(currentValueNum >= 0){
         setStrAsValue('-' + currentValueStr);
@@ -214,7 +208,7 @@ for(let i = 0; i < numberElArray.length; i++){
 }
 
 decimalEl.addEventListener('click', () => {
-    const currentValueStr = getvalueAsStr();
+    const currentValueStr = getValueAsStr();
     if (!currentValueStr.includes(".")) {
         setStrAsValue(currentValueStr + ".");
     }
@@ -228,10 +222,11 @@ const updateTime = () => {
 
     let currentHour = currentTime.getHours();
     let currentMinute = currentTime.getMinutes();
+
 if(currentHour > 12){
     currentHour -= 12;
 }
-    hourEl.textContent = currentHour.toString().padStart(2, '0')
+    hourEl.textContent = currentHour.toString().padStart(2, '0') // adds zero only to one digit
     minuteEl.textContent = currentMinute.toString().padStart(2, '0')
 
 }

@@ -1,5 +1,3 @@
-
-
 // get the dom 
 var btn = document.querySelector('#Add')
 var style = btn.style.cssText = "background-color: #f2f3f4; border-bottom-left-radius: 1px solid black;"
@@ -8,11 +6,12 @@ let list = document.querySelector('li')
 let list1 = document.querySelector('ul:nth-child(1)')
 var input = document.querySelector('input')
 var ul = document.querySelector('ul')
-console.log(ul);
+// console.log(ul);
 var updatebtn = document.getElementById('update')
 var removeBtn = document.getElementById('remove')
 var span = document.querySelector('span')
-console.log(span.outerHTML);
+// console.log(span.outerHTML);
+
 
 // create an empty var to store the inputs entered in input tag
 
@@ -76,7 +75,6 @@ icon.addEventListener('click', function () {
     return newList;
 
 }
-
 
 
 
@@ -279,12 +277,171 @@ span.addEventListener('click', removeallSequentially)
 
 
 
+function createToDoDynamically(id, title) {
+    var newListElement = document.createElement('li');
+    var p = document.createElement('p');
+    var textNode = document.createTextNode(title);
+
+    p.appendChild(textNode);
+    newListElement.appendChild(p);
+    newListElement.id = 'item' + id;
+
+     // Create the delete icon
+     var icon = document.createElement('span');
+     icon.classList.add('material-symbols-outlined', 'float-right', 'cursor-pointer');
+     icon.textContent = 'delete';
+     icon.style.cursor = 'pointer';
+
+
+    icon.addEventListener('click', function () {
+
+        ul.removeChild(newListElement);
+        
+    })
+
+    p.appendChild(textNode);
+    p.appendChild(icon);
+    newListElement.appendChild(p);
+    newListElement.id = 'item' + id;
+
+    // Add classes from the main two lists
+    if (list) {
+        newListElement.classList.add(...list.classList);
+    }
+    if (list1) {
+        newListElement.classList.add(...list1.classList);
+    }
+
+    return newListElement;
+}
+
+// function getToDoListFromBackend() {
+//     var http = new XMLHttpRequest();
+
+//     http.onreadystatechange = function() {
+//         if (this.readyState === 4 && this.status === 200) {
+//             var response = JSON.parse(this.responseText);
+//             var newList = document.createElement('ul'); // Create a new ul element
+//             // console.log(JSON.parse(http.responseText));
+//             for (var i = 0; i < response.length; i++) {
+//                 newList.appendChild(createToDoDynamically(response[i].id, response[i].title));
+//             }
+//             list.appendChild(newList); // Append the new ul element to the existing ul
+//         } else {
+//             console.log("call failed");
+//         }
+//     };
+
+//     http.open("GET", "https://jsonplaceholder.typicode.com/todos", true);
+//     http.send();
+// }
+
+// getToDoListFromBackend();
+
+
+// updatebtn.addEventListener("click", createToDoItemAtBackend)
+
+// function createToDoItemAtBackend(){
+
+
+//     var http = new XMLHttpRequest()
+
+//     http.addEventListener("readystatechange", () => {
+
+//         if(http.readyState === 4){
+//             console.log(http.responseText);
+            
+            
+            
+//         }
+        
+        
+//     })
+
+//     http.open('POST', " https://jsonplaceholder.typicode.com/todos", true)
+    
+//     //  http.onreadystatechange = function() {
+//     //     if (this.readyState === 4 && this.status === 200) {
+//     //         var response = JSON.parse(this.responseText);
+//     //         newList.appendChild(createToDoDynamically(response.id, currentValue));
+//     //         console.log('add item to the list');
+            
+//     //     } else {
+//     //         console.log("call failed");
+//     //     }
+//     // }
+//     // var obj = JSON.stringify({
+//     //     "userId": 1,	
+//     //     "title": currentValue,
+//     //     "completed": false
+        
+        
+//     // })
+    
+//     // http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+//     http.send(obj);
+
+// }
+
+
+// function createToDoDynamically(){
+
+// var http = new XMLHttpRequest()
+
+// http.open("post", "https://jsonplaceholder.typicode.com/todos", true)
+
+// http.onreadystatechange = function(){
+
+//     if(this.readyState === 4 && this.status === 201){
+//         var response = JSON.parse(this.responseText);
+//         newList.appendChild(createToDoDynamically(response[i].id, currentValue));
+//         console.log('add item to the list');
+        
+// }
+// }
+
+// http.send()
+
+// }
 
 
 
+function getRequest(){
 
+    var request = new XMLHttpRequest()
 
+    request.addEventListener("readystatechange", () => {
+        if (request.readyState === 4 && request.status === 200) {
+            console.log(request, request.readyState);
+            var response = JSON.parse(request.responseText);
+            response.forEach(item => {
+                var newListElement = createToDoDynamically(item.id, item.title);
+                ul.appendChild(newListElement);
+            });
+        } else if (request.readyState === 4) {
+            console.log("call failed");
+        }
+    })
 
+    request.open("GET", "https://jsonplaceholder.typicode.com/todos/")
+    request.send()  
 
+}
+
+getRequest();
+
+function addlist() {
+    if (currentValue !== undefined && currentValue !== null && currentValue !== "") {
+        var newListElement = createToDoDynamically(ul.children.length + 1, currentValue);
+        ul.appendChild(newListElement);
+
+        input.value = '';
+        currentValue = '';
+    } else {
+        alert("Please insert a TODO list item. Running out of ideas?");
+    }
+}
+
+btn.addEventListener('click', addlist);
 
 

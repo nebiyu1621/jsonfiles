@@ -79,7 +79,7 @@ timeButton.addEventListener('click', () => {
     timeDisplay.classList.remove('hidden');
 
     // Start countdown
-    let hours = 23;
+    let hours = 12;
     let minutes = 59;
     let seconds = 59;
 
